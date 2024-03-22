@@ -29,7 +29,8 @@ RunAzimuth.Seurat <- function(
   assay = "RNA",
   k.weight = 50,
   n.trees = 20,
-  mapping.score.k = 100
+  mapping.score.k = 100,
+  path.to.homolog='https://seurat.nygenome.org/azimuth/references/homologs.rds'
 ) {
   if (dir.exists(reference)) {
     reference <- LoadReference(reference)$map
@@ -75,7 +76,7 @@ RunAzimuth.Seurat <- function(
   query <- ConvertGeneNames(
     object = query,
     reference.names = rownames(x = reference),
-    homolog.table = 'https://seurat.nygenome.org/azimuth/references/homologs.rds'
+    homolog.table = path.to.homolog
   )
 
   # Calculate nCount_RNA and nFeature_RNA if the query does not
